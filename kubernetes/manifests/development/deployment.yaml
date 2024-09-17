@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subscription-deployment
+  namespace: subscription-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: subscription
+  template:
+    metadata:
+      labels:
+        app: subscription
+    spec:
+      containers:
+        - name: subscription-container
+          image: subscription-service  # This should match your built image
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
