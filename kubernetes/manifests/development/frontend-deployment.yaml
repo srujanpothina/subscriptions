@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subscription-frontend
+  namespace: subscription-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: subscription-frontend
+  template:
+    metadata:
+      labels:
+        app: subscription-frontend
+    spec:
+      containers:
+        - name: subscription-container
+          image: subscription-frontend
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
